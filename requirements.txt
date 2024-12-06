@@ -26,3 +26,4 @@ git+https://github.com/NVlabs/nvdiffrast.git
 spconv-cu120
 gradio==4.44.1
 gradio_litmodel3d==0.0.1
+-e extensions/vox2seq/
