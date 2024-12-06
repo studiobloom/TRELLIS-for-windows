@@ -75,7 +75,7 @@ Give unrestricted script access to powershell so venv can work:
         --demo                  Install all dependencies for demo
     ```~~
     
-  1. powershell run with 1、install-uv-qinglong.ps1 (right click then choose `use powershell run`)
+  1. powershell run with `1、install-uv-qinglong.ps1` (right click then choose `use powershell run`)
     auto install in one-clik
 <!-- Pretrained Models -->
 ## 🤖 Pretrained Models
@@ -182,7 +182,7 @@ After running the code, you will get the following files:
 ~~python app.py~~
 ~~```~~
 
-powershell run with 2、run_gui.ps1 (right click then choose `use powershell run`)
+powershell run with `2、run_gui.ps1` (right click then choose `use powershell run`)
 
 Then, you can access the demo at the address shown in the terminal.
 
