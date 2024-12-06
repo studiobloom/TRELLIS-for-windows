@@ -60,7 +60,7 @@ try {
 catch {
     Write-Output "Installing uv|安装uv模块中..."
     if ($Env:OS -ilike "*windows*") {
-        powershell -ExecutionPolicy ByPass -c "./uv-installer.ps1"
+        powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
         Check "uv install failed|安装uv模块失败。"
     }
     else {
