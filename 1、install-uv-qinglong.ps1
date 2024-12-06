@@ -58,14 +58,14 @@ try {
     Write-Output "uv installed|UV模块已安装."
 }
 catch {
-    Write-Output "Install uv|安装uv模块中..."
+    Write-Output "Installing uv|安装uv模块中..."
     if ($Env:OS -ilike "*windows*") {
         powershell -ExecutionPolicy ByPass -c "./uv-installer.ps1"
-        Check "安装uv模块失败。"
+        Check "uv install failed|安装uv模块失败。"
     }
     else {
         sh "./uv-installer.sh"
-        Check "安装uv模块失败。"
+        Check "uv install failed|安装uv模块失败。"
     }
 }
 
@@ -79,7 +79,7 @@ if ($env:OS -ilike "*windows*") {
         . ./.venv/Scripts/activate
     }else{
         Write-Output "Create .venv"
-        ~/.local/bin/uv.exe venv -p 3.10
+        ~/.local/bin/uv venv -p 3.10
         . ./.venv/Scripts/activate
     }
 }
@@ -97,16 +97,19 @@ else{
     . ./.venv/bin/activate.ps1
 }
 
-Write-Output "安装程序所需依赖 (已进行国内加速，若在国外或无法使用加速源请换用 install.ps1 脚本)"
+Write-Output "Installing main requirements"
 
 ~/.local/bin/uv pip sync requirements-uv.txt --index-strategy unsafe-best-match
-Check "环境安装失败。"
+Check "Install main requirements failed"
 
 ~/.local/bin/uv pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu124.html
+Check "Install kaolin failed"
 
 ~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
+Check "Install diffoctreerast failed"
 
 ~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
+Check "Install diff-gaussian-rasterization failed"
 
-Write-Output "安装完毕"
+Write-Output "Install finished"
 Read-Host | Out-Null ;
