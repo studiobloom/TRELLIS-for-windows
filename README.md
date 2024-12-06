@@ -26,35 +26,39 @@
 ## 📦 Installation
 
 ### Prerequisites
-- Linux is recommended for running the code. The code is not tested on other platforms.
-- [Conda](https://docs.anaconda.com/miniconda/install/#quick-command-line-install) is recommended for managing the dependencies.
-- Python 3.8 or higher is required.
+~~- Linux is recommended for running the code. The code is not tested on other platforms.~~
+~~- [Conda](https://docs.anaconda.com/miniconda/install/#quick-command-line-install) is recommended for managing the dependencies.~~
+~~- Python 3.8 or higher is required.~~
 - NVIDIA GPU with more than 16GB memory is required. The code has been tested on NVIDIA A100 and A6000 GPUs.
-- [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit-archive) is required to compile some of the submodules. We tested the code on CUDA 11.8 and 12.2.
+- [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit-archive) is required to compile some of the submodules. ~~We tested the code on CUDA 11.8 and 12.2.~~ I tested the code on CUDA 12.4
+
+Give unrestricted script access to powershell so venv can work:
+
+- Open an administrator powershell window
+- Type `Set-ExecutionPolicy Unrestricted` and answer A
+- Close admin powershell window
 
 ### Installation Steps
-1. Clone the repo:
-    ```sh
+~~1. Clone the repo:~~
+    ~~```sh
     git clone --recurse-submodules https://github.com/microsoft/TRELLIS.git
     cd TRELLIS
-    ```
+    ```~~
 
-2. Install the dependencies:
-    
-    **Before running the following command there are somethings to note:**
-    - By adding `--new-env`, a new conda environment named `trellis` will be created. If you want to use an existing conda environment, please remove this flag.
-    - By default the `trellis` environment will use pytorch 2.4.0 with CUDA 11.8. If you want to use a different version of CUDA (e.g., if you have CUDA Toolkit 12.2 installed and do not want to install another 11.8 version for submodule compilation), you can remove the `--new-env` flag and manually install the required dependencies. Refer to [PyTorch](https://pytorch.org/get-started/previous-versions/) for the installation command.
-    - If you have multiple CUDA Toolkit versions installed, `PATH` should be set to the correct version before running the command. For example, if you have CUDA Toolkit 11.8 and 12.2 installed, you should run `export PATH=/usr/local/cuda-11.8/bin:$PATH` before running the command.
-    - By default, the code uses the `flash-attn` backend for attention. For GPUs do not support `flash-attn` (e.g., NVIDIA V100), you can remove the `--flash-attn` flag to install `xformers` only and set the `ATTN_BACKEND` environment variable to `xformers` before running the code. See the [Minimal Example](#minimal-example) for more details.
-    - The installation may take a while due to the large number of dependencies. Please be patient. If you encounter any issues, you can try to install the dependencies one by one, specifying one flag at a time.
-    - If you encounter any issues during the installation, feel free to open an issue or contact us.
-    
-    Create a new conda environment named `trellis` and install the dependencies:
-    ```sh
+~~2. Install the dependencies:~~
+    ~~**Before running the following command there are somethings to note:**~~
+    ~~- By adding `--new-env`, a new conda environment named `trellis` will be created. If you want to use an existing conda environment, please remove this flag.~~
+    ~~- By default the `trellis` environment will use pytorch 2.4.0 with CUDA 11.8. If you want to use a different version of CUDA (e.g., if you have CUDA Toolkit 12.2 installed and do not want to install another 11.8 version for submodule compilation), you can remove the `--new-env` flag and manually install the required dependencies. Refer to [PyTorch](https://pytorch.org/get-started/previous-versions/) for the installation command.~~
+    ~~- If you have multiple CUDA Toolkit versions installed, `PATH` should be set to the correct version before running the command. For example, if you have CUDA Toolkit 11.8 and 12.2 installed, you should run `export PATH=/usr/local/cuda-11.8/bin:$PATH` before running the command.
+    - By default, the code uses the `flash-attn` backend for attention. For GPUs do not support `flash-attn` (e.g., NVIDIA V100), you can remove the `--flash-attn` flag to install `xformers` only and set the `ATTN_BACKEND` environment variable to `xformers` before running the code. See the [Minimal Example](#minimal-example) for more details.~~
+    ~~- The installation may take a while due to the large number of dependencies. Please be patient. If you encounter any issues, you can try to install the dependencies one by one, specifying one flag at a time.~~
+    ~~- If you encounter any issues during the installation, feel free to open an issue or contact us.~~
+    ~~Create a new conda environment named `trellis` and install the dependencies:~~
+    ~~```sh
     . ./setup.sh --new-env --basic --xformers --flash-attn --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast
-    ```
-    The detailed usage of `setup.sh` can be found by running `. ./setup.sh --help`.
-    ```sh
+    ```~~
+    ~~The detailed usage of `setup.sh` can be found by running `. ./setup.sh --help`.~~
+    ~~```sh
     Usage: setup.sh [OPTIONS]
     Options:
         -h, --help              Display this help message
@@ -69,8 +73,10 @@
         --kaolin                Install kaolin
         --nvdiffrast            Install nvdiffrast
         --demo                  Install all dependencies for demo
-    ```
-
+    ```~~
+    
+  1. powershell run with 1、install-uv-qinglong.ps1 (right click then choose `use powershell run`)
+    auto install in one-clik
 <!-- Pretrained Models -->
 ## 🤖 Pretrained Models
 
@@ -166,15 +172,17 @@ After running the code, you will get the following files:
 
 ### Web Demo
 
-[app.py](app.py) provides a simple web demo for 3D asset generation. Since this demo is based on [Gradio](https://gradio.app/), additional dependencies are required:
-```sh
-. ./setup.sh --demo
-```
+~~[app.py](app.py) provides a simple web demo for 3D asset generation. Since this demo is based on [Gradio](https://gradio.app/), additional dependencies are required:~~
+~~```sh~~
+~~. ./setup.sh --demo~~
+~~```~~
 
-After installing the dependencies, you can run the demo with the following command:
-```sh
-python app.py
-```
+~~After installing the dependencies, you can run the demo with the following command:~~
+~~```sh~~
+~~python app.py~~
+~~```~~
+
+powershell run with 2、run_gui.ps1 (right click then choose `use powershell run`)
 
 Then, you can access the demo at the address shown in the terminal.
 
