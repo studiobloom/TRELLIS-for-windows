@@ -29,28 +29,30 @@ function Check {
     }
 }
 
-# Check C drive free space with error handling
-try {
-    $CDrive = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" -ErrorAction Stop
-    if ($CDrive) {
-        $FreeSpaceGB = [math]::Round($CDrive.FreeSpace / 1GB, 2)
-        Write-Host "C: drive free space: ${FreeSpaceGB}GB"
-        
-        # Set UV cache directory based on available space
-        if ($FreeSpaceGB -lt 10) {
-            Write-Host "Low disk space detected. Using local .cache directory"
+# First check if UV cache directory already exists
+if (Test-Path -Path "${env:LOCALAPPDATA}/uv/cache") {
+    Write-Host "UV cache directory already exists, skipping disk space check"
+} else {
+    # Check C drive free space with error handling
+    try {
+        $CDrive = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" -ErrorAction Stop
+        if ($CDrive) {
+            $FreeSpaceGB = [math]::Round($CDrive.FreeSpace / 1GB, 2)
+            Write-Host "C: drive free space: ${FreeSpaceGB}GB"
+            
+            # Set UV cache directory based on available space
+            if ($FreeSpaceGB -lt 10) {
+                Write-Host "Low disk space detected. Using local .cache directory"
+                $Env:UV_CACHE_DIR=".cache"
+            } 
+        } else {
+            Write-Warning "C: drive not found. Using local .cache directory"
             $Env:UV_CACHE_DIR=".cache"
-            $Env:UV_LINK_MODE="copy"
-        } 
-    } else {
-        Write-Warning "C: drive not found. Using local .cache directory"
+        }
+    } catch {
+        Write-Warning "Failed to check disk space: $_. Using local .cache directory"
         $Env:UV_CACHE_DIR=".cache"
-        $Env:UV_LINK_MODE="copy"
     }
-} catch {
-    Write-Warning "Failed to check disk space: $_. Using local .cache directory"
-    $Env:UV_CACHE_DIR=".cache"
-    $Env:UV_LINK_MODE="copy"
 }
 
 try {
