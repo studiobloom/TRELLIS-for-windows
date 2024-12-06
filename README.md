@@ -29,7 +29,7 @@
 ~~- Linux is recommended for running the code. The code is not tested on other platforms.~~
 ~~- [Conda](https://docs.anaconda.com/miniconda/install/#quick-command-line-install) is recommended for managing the dependencies.~~
 ~~- Python 3.8 or higher is required.~~
-- NVIDIA GPU with more than 16GB memory is required. The code has been tested on NVIDIA A100 and A6000 GPUs.
+- NVIDIA GPU with more than 16GB memory is required. The code has been tested on NVIDIA A100 and A6000 GPUs.Windows version tested 4090 GPU.
 - [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit-archive) is required to compile some of the submodules. ~~We tested the code on CUDA 11.8 and 12.2.~~ I tested the code on CUDA 12.4
 
 Give unrestricted script access to powershell so venv can work:
