@@ -41,7 +41,7 @@ Give unrestricted script access to powershell so venv can work:
 ### Installation Steps
 1. Clone the repo:
     ```
-    git clone --recurse-submodules https://github.com/microsoft/TRELLIS.git
+    git clone --recurse-submodules https://github.com/sdbds/TRELLIS-for-windows.git
     ```
 
 ~~2. Install the dependencies:~~
