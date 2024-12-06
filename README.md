@@ -39,11 +39,10 @@ Give unrestricted script access to powershell so venv can work:
 - Close admin powershell window
 
 ### Installation Steps
-~~1. Clone the repo:~~
-    ~~```sh
-    git clone --recurse-submodules https://github.com/microsoft/TRELLIS.git
-    cd TRELLIS
-    ```~~
+1. Clone the repo:
+    ```
+    git clone --recurse-submodules https://github.com/sdbds/TRELLIS-for-windows.git
+    ```
 
 ~~2. Install the dependencies:~~
     ~~**Before running the following command there are somethings to note:**~~
@@ -75,7 +74,7 @@ Give unrestricted script access to powershell so venv can work:
         --demo                  Install all dependencies for demo
     ```~~
     
-  1. powershell run with `1、install-uv-qinglong.ps1` (right click then choose `use powershell run`)
+2. powershell run with `1、install-uv-qinglong.ps1` (right click then choose `use powershell run`)
     auto install in one-clik
 <!-- Pretrained Models -->
 ## 🤖 Pretrained Models
