@@ -1,17 +1,17 @@
 ﻿Set-Location $PSScriptRoot
 
-$Env:HF_HOME="huggingface"
+$Env:HF_HOME = "huggingface"
 #$Env:HF_ENDPOINT="https://hf-mirror.com"
-$Env:PIP_DISABLE_PIP_VERSION_CHECK=1
-$Env:PIP_NO_CACHE_DIR=1
+$Env:PIP_DISABLE_PIP_VERSION_CHECK = 1
+$Env:PIP_NO_CACHE_DIR = 1
 #$Env:PIP_INDEX_URL="https://pypi.mirrors.ustc.edu.cn/simple"
 #$Env:UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple/"
-$Env:UV_EXTRA_INDEX_URL="https://download.pytorch.org/whl/cu124"
-$Env:UV_CACHE_DIR="${env:LOCALAPPDATA}/uv/cache"
-$Env:UV_NO_BUILD_ISOLATION=1
-$Env:UV_NO_CACHE=0
-$Env:UV_LINK_MODE="symlink"
-$Env:GIT_LFS_SKIP_SMUDGE=1
+$Env:UV_EXTRA_INDEX_URL = "https://download.pytorch.org/whl/cu124"
+$Env:UV_CACHE_DIR = "${env:LOCALAPPDATA}/uv/cache"
+$Env:UV_NO_BUILD_ISOLATION = 1
+$Env:UV_NO_CACHE = 0
+$Env:UV_LINK_MODE = "symlink"
+$Env:GIT_LFS_SKIP_SMUDGE = 1
 
 function InstallFail {
     Write-Output "Install failed|安装失败。"
@@ -32,7 +32,8 @@ function Check {
 # First check if UV cache directory already exists
 if (Test-Path -Path "${env:LOCALAPPDATA}/uv/cache") {
     Write-Host "UV cache directory already exists, skipping disk space check"
-} else {
+}
+else {
     # Check C drive free space with error handling
     try {
         $CDrive = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" -ErrorAction Stop
@@ -43,15 +44,17 @@ if (Test-Path -Path "${env:LOCALAPPDATA}/uv/cache") {
             # Set UV cache directory based on available space
             if ($FreeSpaceGB -lt 10) {
                 Write-Host "Low disk space detected. Using local .cache directory"
-                $Env:UV_CACHE_DIR=".cache"
+                $Env:UV_CACHE_DIR = ".cache"
             } 
-        } else {
-            Write-Warning "C: drive not found. Using local .cache directory"
-            $Env:UV_CACHE_DIR=".cache"
         }
-    } catch {
+        else {
+            Write-Warning "C: drive not found. Using local .cache directory"
+            $Env:UV_CACHE_DIR = ".cache"
+        }
+    }
+    catch {
         Write-Warning "Failed to check disk space: $_. Using local .cache directory"
-        $Env:UV_CACHE_DIR=".cache"
+        $Env:UV_CACHE_DIR = ".cache"
     }
 }
 
@@ -79,7 +82,8 @@ if ($env:OS -ilike "*windows*") {
     elseif (Test-Path "./.venv/Scripts/activate") {
         Write-Output "Windows .venv"
         . ./.venv/Scripts/activate
-    }else{
+    }
+    else {
         Write-Output "Create .venv"
         ~/.local/bin/uv venv -p 3.10
         . ./.venv/Scripts/activate
@@ -93,7 +97,7 @@ elseif (Test-Path "./.venv/bin/activate") {
     Write-Output "Linux .venv"
     . ./.venv/bin/activate.ps1
 }
-else{
+else {
     Write-Output "Create .venv"
     ~/.local/bin/uv venv -p 3.10
     . ./.venv/bin/activate.ps1
@@ -106,17 +110,33 @@ Write-Output "Installing main requirements"
 ~/.local/bin/uv pip sync requirements-uv.txt --index-strategy unsafe-best-match
 Check "Install main requirements failed"
 
-~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
-Check "Install vox2seq failed"
+try {
+    ~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
+}
+catch {
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/vox2seq-0.0.0-cp310-cp310-win_amd64.whl
+    Check "Install vox2seq failed"
+}
 
 ~/.local/bin/uv pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu124.html
 Check "Install kaolin failed"
 
-~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
-Check "Install diffoctreerast failed"
+try {
+    ~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
+}
+catch {
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diffoctreerast-0.0.0-cp310-cp310-win_amd64.whl
+    Check "Install diffoctreerast failed"
+}
 
-~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
-Check "Install diff-gaussian-rasterization failed"
+try {
+    ~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
+}
+catch {
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diff_gaussian_rasterization-0.0.0-cp310-cp310-win_amd64.whl 
+    Check "Install diff-gaussian-rasterization failed"
+}
+
 
 Write-Output "Install finished"
 Read-Host | Out-Null ;
