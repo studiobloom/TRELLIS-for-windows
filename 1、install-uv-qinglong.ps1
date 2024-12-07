@@ -101,6 +101,8 @@ else{
 
 Write-Output "Installing main requirements"
 
+~/.local/bin/uv pip install --upgrade pip setuptools wheel
+
 ~/.local/bin/uv pip sync requirements-uv.txt --index-strategy unsafe-best-match
 Check "Install main requirements failed"
 
