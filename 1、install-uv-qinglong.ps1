@@ -106,6 +106,9 @@ Write-Output "Installing main requirements"
 ~/.local/bin/uv pip sync requirements-uv.txt --index-strategy unsafe-best-match
 Check "Install main requirements failed"
 
+~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
+Check "Install vox2seq failed"
+
 ~/.local/bin/uv pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu124.html
 Check "Install kaolin failed"
 
