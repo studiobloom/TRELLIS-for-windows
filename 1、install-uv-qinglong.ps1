@@ -114,7 +114,7 @@ try {
     ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/vox2seq-0.0.0-cp310-cp310-win_amd64.whl
 }
 catch {
-    ~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
+    ~/.local/bin/uv pip install --no-build-isolation -e extensions/vox2seq/
     Check "Install vox2seq failed"
 }
 
@@ -122,18 +122,18 @@ catch {
 Check "Install kaolin failed"
 
 try {
-    ~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diffoctreerast-0.0.0-cp310-cp310-win_amd64.whl
 }
 catch {
-    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diffoctreerast-0.0.0-cp310-cp310-win_amd64.whl
+    ~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
     Check "Install diffoctreerast failed"
 }
 
 try {
-    ~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diff_gaussian_rasterization-0.0.0-cp310-cp310-win_amd64.whl
 }
 catch {
-    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diff_gaussian_rasterization-0.0.0-cp310-cp310-win_amd64.whl 
+    ~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
     Check "Install diff-gaussian-rasterization failed"
 }
 
