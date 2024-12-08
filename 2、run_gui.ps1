@@ -24,7 +24,8 @@ elseif (Test-Path "./.venv/bin/activate") {
 $Env:HF_HOME = "huggingface"
 #$Env:HF_ENDPOINT = "https://hf-mirror.com"
 $Env:XFORMERS_FORCE_DISABLE_TRITON = "1"
-#$ATTN_BACKEND = "xformers"
+#$Env:ATTN_BACKEND = "xformers"
+#$Env:SPCONV_ALGO = "native"
 
 python app.py
 
