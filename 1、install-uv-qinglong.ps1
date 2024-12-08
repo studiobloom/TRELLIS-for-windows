@@ -111,10 +111,10 @@ Write-Output "Installing main requirements"
 Check "Install main requirements failed"
 
 try {
-    ~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
+    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/vox2seq-0.0.0-cp310-cp310-win_amd64.whl
 }
 catch {
-    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/vox2seq-0.0.0-cp310-cp310-win_amd64.whl
+    ~/.local/bin/uv pip install -e extensions/vox2seq/  --no-build-isolation
     Check "Install vox2seq failed"
 }
 
