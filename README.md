@@ -44,6 +44,7 @@
     ```
     git clone --recurse-submodules https://github.com/sdbds/TRELLIS-for-windows.git
     ```
+## MUST HAVE `--recurse-submodules`
 
 2. Install the dependencies:
     **Before running the following command there are somethings to note:**
