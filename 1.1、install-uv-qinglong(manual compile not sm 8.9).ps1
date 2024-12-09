@@ -110,32 +110,19 @@ Write-Output "Installing main requirements"
 ~/.local/bin/uv pip sync requirements-uv.txt --index-strategy unsafe-best-match
 Check "Install main requirements failed"
 
-try {
-    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/vox2seq-0.0.0-cp310-cp310-win_amd64.whl
-}
-catch {
-    ~/.local/bin/uv pip install --no-build-isolation -e extensions/vox2seq/
-    Check "Install vox2seq failed"
-}
+
+~/.local/bin/uv pip install --no-build-isolation -e extensions/vox2seq/
+Check "Install vox2seq failed"
+
 
 ~/.local/bin/uv pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu124.html
 Check "Install kaolin failed"
 
-try {
-    ~/.local/bin/uv pip install https://github.com/iiiytn1k/sd-webui-some-stuff/releases/download/diffoctreerast/diffoctreerast-0.0.0-cp310-cp310-win_amd64.whl
-}
-catch {
-    ~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
-    Check "Install diffoctreerast failed"
-}
+~/.local/bin/uv pip install --no-build-isolation git+https://github.com/JeffreyXiang/diffoctreerast.git
+Check "Install diffoctreerast failed"
 
-try {
-    ~/.local/bin/uv pip install https://github.com/sdbds/diff-gaussian-rasterization/releases/download/diff-gaussian-rasterization/diff_gaussian_rasterization-0.0.0-cp310-cp310-win_amd64.whl
-}
-catch {
-    ~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
-    Check "Install diff-gaussian-rasterization failed"
-}
+~/.local/bin/uv pip install git+https://github.com/sdbds/diff-gaussian-rasterization
+Check "Install diff-gaussian-rasterization failed"
 
 
 Write-Output "Install finished"
