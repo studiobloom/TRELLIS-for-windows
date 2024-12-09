@@ -20,9 +20,9 @@ transformers
 git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8
 xformers
 https://github.com/bdashore3/flash-attention/releases/download/v2.7.1.post1/flash_attn-2.7.1.post1+cu124torch2.5.1cxx11abiFALSE-cp310-cp310-win_amd64.whl
+https://github.com/sdbds/TRELLIS-for-windows/releases/download/nvdiffrast-0.3.3/nvdiffrast-0.3.3-py3-none-any.whl
 numba==0.60.0
 numpy==1.26.3
-git+https://github.com/NVlabs/nvdiffrast.git
 spconv-cu120
 gradio==4.44.1
 gradio_litmodel3d==0.0.1
