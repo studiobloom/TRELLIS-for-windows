@@ -26,4 +26,4 @@ numpy==1.26.3
 spconv-cu120
 gradio==4.44.1
 gradio_litmodel3d==0.0.1
--e extensions/vox2seq/
+#-e extensions/vox2seq/
