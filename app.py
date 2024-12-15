@@ -245,4 +245,5 @@ with gr.Blocks() as demo:
 if __name__ == "__main__":
     pipeline = TrellisImageTo3DPipeline.from_pretrained("./trellis/TRELLIS-image-large")
     pipeline.cuda()
-    demo.launch(share=True)
+    demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+
