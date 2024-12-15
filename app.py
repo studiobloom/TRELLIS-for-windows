@@ -1,6 +1,6 @@
 import gradio as gr
 from gradio_litmodel3d import LitModel3D
-
+import subprocess
 import os
 from typing import *
 import torch
@@ -245,5 +245,21 @@ with gr.Blocks() as demo:
 if __name__ == "__main__":
     pipeline = TrellisImageTo3DPipeline.from_pretrained("./trellis/TRELLIS-image-large")
     pipeline.cuda()
-    demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
-
+    
+    # Start Cloudflare Tunnel
+    try:
+        tunnel_process = subprocess.Popen(
+            ["cloudflared", "tunnel", "--url", "http://localhost:7860"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        print("Starting Cloudflare Tunnel...")
+    except FileNotFoundError:
+        print("cloudflared not found. Please ensure it is installed and in your PATH.")
+        exit(1)    
+    try:
+        demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    finally:
+        # Ensure the tunnel process is terminated when the app stops
+        print("Stopping Cloudflare Tunnel...")
+        tunnel_process.terminate()
